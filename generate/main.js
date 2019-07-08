@@ -4,6 +4,9 @@ const cheerio = require('cheerio');
 let content = fs.readFileSync('./scrape/index.html', 'utf8');
 const $ = cheerio.load(content);
 
+// TODO: make this configurable
+const webPath = 'https://nminchow.github.io/teppen-json'
+
 const logError = (err) => {
   if (err) console.log(err);
  };
@@ -23,7 +26,7 @@ const cards = $('.popup-content.containar.box').map((i, element) => {
   return {
     name: data.find('.card-name-child').text(),
     id: data.attr('id'),
-    image: data.find('img').attr('src'),
+    image: `${webPath}/images/${data.find('img').attr('src')}`,
     attributes
   };
 }).get();
