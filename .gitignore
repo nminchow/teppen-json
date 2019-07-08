@@ -1,0 +1,5 @@
+**/node_modules/**
+/generate/scrape/**
+!/generate/scrape/index.html
+!/generate/scrape/images/
+!/generate/scrape/images/*
