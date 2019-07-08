@@ -26,7 +26,7 @@ const cards = $('.popup-content.containar.box').map((i, element) => {
   return {
     name: data.find('.card-name-child').text(),
     id: data.attr('id'),
-    image: `${webPath}/images/${data.find('img').attr('src')}`,
+    image: `${webPath}/${data.find('img').attr('src')}`,
     attributes
   };
 }).get();
