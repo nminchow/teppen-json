@@ -1,8 +1,10 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 
-let content = fs.readFileSync('./scrape/index.html', 'utf8');
-const $ = cheerio.load(content);
+let coreContent = fs.readFileSync('./scrape/core.html', 'utf8');
+let basicContent = fs.readFileSync('./scrape/basic.html', 'utf8');
+
+const $ = cheerio.load(coreContent + basicContent);
 
 // TODO: make this configurable
 const webPath = 'https://nminchow.github.io/teppen-json'
