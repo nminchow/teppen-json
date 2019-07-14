@@ -4,16 +4,27 @@ const fs = require('fs');
 
 rimraf.sync("./scrape");
 
+const urls = [
+  {
+    url: 'https://teppenthegame.com/en/cards/packs/2019/cor/',
+    filename: 'core.html'
+  },
+  {
+    url: 'https://teppenthegame.com/en/cards/basic/2019/',
+    filename: 'basic.html'
+  },
+]
+
 scrape({
-  urls: ['https://teppenthegame.com/en/cards/packs/2019/cor/'],
+  urls,
   directory: 'scrape',
   subdirectories: [
     {directory: 'images', extensions: ['.png']}
   ],
   requestConcurrency: 4,
   urlFilter: function(url){
-    if (url.includes('https://teppenthegame.com/en/cards/packs/2019/cor/')) return true;
-    if (url.includes('cor') && url.includes('png')) return true;
+    if (urls.some((current) => url.includes(current.url))) return true;
+    if (url.includes('cards') && url.includes('png')) return true;
     return false;
   },
 }).then(() => {
